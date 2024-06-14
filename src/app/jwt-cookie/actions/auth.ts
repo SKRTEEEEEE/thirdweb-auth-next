@@ -20,16 +20,34 @@ export const generatePayload = thirdwebAuth.generatePayload;
 
 export async function login(payload: VerifyLoginPayloadParams) {
   const verifiedPayload = await thirdwebAuth.verifyPayload(payload);
-  if (verifiedPayload.valid) {
-    const jwt = await thirdwebAuth.generateJWT({
-      payload: verifiedPayload.payload,
-    });
-    cookies().set("jwt", jwt);
-    // redirect to the secure page
-    return redirect("/jwt-cookie/secure");
+  console.log("verifiedPayload :", verifiedPayload)
+  if (verifiedPayload.valid ) {
+    if(verifiedPayload.payload.address === "0x490bb233c707A0841cA52979Be4D88B6621d1988"){
+      const jwt = await thirdwebAuth.generateJWT({
+        payload: verifiedPayload.payload,
+      });
+      cookies().set("jwt", jwt);
+      // redirect to the secure page
+      return redirect("/jwt-cookie/secure");
+    }
+    else{
+      return {message: "comprobacion en el servidor fallida", success: false}
+    }
+    
   }
 }
-
+// export async function bdd(payload: VerifyLoginPayloadParams) {
+//   const verifiedPayload = await thirdwebAuth.verifyPayload(payload);
+//   console.log("verifiedPayload :", verifiedPayload)
+//   if (verifiedPayload.valid && verifiedPayload.payload.address === "0x490bb233c707A0841cA52979Be4D88B6621d1988") {
+//     const jwt = await thirdwebAuth.generateJWT({
+//       payload: verifiedPayload.payload,
+//     });
+//     cookies().set("jwt", jwt);
+//     // redirect to the secure page
+//     return redirect("/jwt-cookie/secure");
+//   }
+// }
 export async function authedOnly() {
   const jwt = cookies().get("jwt");
   if (!jwt?.value) {
