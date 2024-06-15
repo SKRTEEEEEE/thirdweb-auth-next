@@ -22,10 +22,11 @@ export const ModificarBddButton: React.FC = () => {
     // Step 3: Call the login function we defined in the auth actions file    
     const response = await actionAdmin(signatureResult);
     (response?.success === false)&&alert(response.message)
+    console.log("response: ", response)
   }
   return (
     <button disabled={!account} onClick={handleClick}>
-      Hacer algo en la base de datos y redirigir a la pagina secure
+      Hacer algo en la base de datos y revalidar la ruta
     </button>
   );
 };

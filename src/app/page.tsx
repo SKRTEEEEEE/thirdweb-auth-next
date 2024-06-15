@@ -14,7 +14,10 @@ const Home: NextPage = () => {
         <Link href="/connect-button">Connect Button Integration</Link>
       </li>
       <li>
-        <Link href="/jwt-cookie-admin">Action limited to Admin</Link>
+        <Link href="/jwt-cookie-admin">Action limited to Admin (w Redirect)</Link>
+      </li>
+      <li>
+        <Link href="/jwt-admin-action">Action limited to Admin (w Refresh)</Link>
       </li>
     </ul>
   );
