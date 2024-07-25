@@ -6,5 +6,5 @@ export default function ThirdwebProviderLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <ThirdwebProvider>{children}</ThirdwebProvider>;
+  return <ThirdwebProvider >{children}</ThirdwebProvider>;
 }
